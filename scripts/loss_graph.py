@@ -49,6 +49,13 @@ def loss_figure(csv_path, x_col, train_col, val_col, min_max="min"):
     # Highlighting the best epoch
     plt.axvline(x=best_loss_epoch, label=label, color="red", ls=":")
     plt.axhline(y=best_val_loss, color="red", ls=":")
+    
+    # Position the text with an offset and new line
+    offset = 0.01
+    text_x = best_loss_epoch + (plt.gca().get_xlim()[1] - plt.gca().get_xlim()[0]) * offset
+    text_y = best_val_loss + (plt.gca().get_ylim()[1] - plt.gca().get_ylim()[0]) * offset
+    text = f'Epoch: {best_loss_epoch}\nLoss: {best_val_loss:.4f}'
+    plt.text(text_x, text_y, text, color='r', ha='left', va='bottom')
 
     # Adding axis labels and legend
     plt.xlabel("Epoch")
